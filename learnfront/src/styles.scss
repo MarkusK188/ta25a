@@ -5,3 +5,6 @@ $bgcolor: coral;
 body {
     background-color: color.scale($bgcolor, $lightness: -30%);
 }
+div {
+    background-color: white;
+}
