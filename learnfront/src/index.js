@@ -1,3 +1,6 @@
-import lol from './math.js';
+import { createApp } from 'vue';
 
-console.log(lol.add(2, 10));
+import App from './App.vue';
+
+const app = createApp(App);
+app.mount('#app');
