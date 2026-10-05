@@ -5,7 +5,10 @@ import ItemList from './ItemList.vue';
     let isPrimary = ref(true);
     let text = ref("");
     let i = 0;
-
+let num = ref(0);
+setInterval(() => {
+    num.value++
+}, 1000);
     let items = ref([
         {id:i++, text:'Piim', isDone: true},
         {id:i++, text:'Viin', isDone: false},
@@ -19,7 +22,7 @@ import ItemList from './ItemList.vue';
         if(newItem.value.trim() !== '') {
             items.value.push({id:i++, text:newItem.value.trim(), isDone: false},);
             newItem.value = '';
-        } else {alert("THIS SHIT EMPTY AF!!!");
+        } else {alert("THIS SHIT EMPTY AF!!!"); //alert peatab kõik JavaScripti kui see ees on
              newItem.value = '';
         }
     }
@@ -30,6 +33,7 @@ import ItemList from './ItemList.vue';
 
 <template>
     <div class="container content mt-3">
+        {{ num }}
         <div class="field has-addons">
              <div class="control is-expanded">
                 <input @keydown.enter="add" class="input" type="text" v-model="newItem" placeholder="Find a repository">
