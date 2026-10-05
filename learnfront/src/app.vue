@@ -3,12 +3,38 @@ import {ref} from 'vue';
 
     let isPrimary = ref(true);
     let text = ref("");
+
+    let items = ref(['Piim', 'Viin', 'Õlu', 'Peeter', 'eee']);
+    let newItem = ref('');
+
+    function add(){
+        if(newItem.value.trim() !== '') {
+            items.value.push(newItem.value.trim());
+            newItem.value = '';
+        } else {console.log("THIS SHIT EMPTY AF!!!");
+             newItem.value = '';
+        }
+    }
 </script>
 
 <template>
-    <button @click="isPrimary = !isPrimary" class="button" :class="{'is-primary': isPrimary, 'is-warning': !isPrimary}">Click Me! </button>
-    <input type="text" class="input" v-model="text">
-    <h1>{{text.split('').reverse().join('')}}</h1>
+    <div class="container content mt-3">
+        <div class="field has-addons">
+             <div class="control is-expanded">
+                <input @keydown.enter="add" class="input" type="text" v-model="newItem" placeholder="Find a repository">
+            </div>
+            <div class="control">
+                <button @click="add" class="button is-primary">
+                    Add
+                </button>
+            </div>
+        </div>
+        <ul>
+            <li v-for="item in items">{{ item }}</li>   
+        </ul>
+    </div>
+    
+
 </template>
 
 <style>
