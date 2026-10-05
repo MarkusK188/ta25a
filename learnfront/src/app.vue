@@ -1,5 +1,6 @@
 <script setup>
 import {computed, ref} from 'vue';
+import ItemList from './ItemList.vue';
 
     let isPrimary = ref(true);
     let text = ref("");
@@ -18,7 +19,7 @@ import {computed, ref} from 'vue';
         if(newItem.value.trim() !== '') {
             items.value.push({id:i++, text:newItem.value.trim(), isDone: false},);
             newItem.value = '';
-        } else {console.log("THIS SHIT EMPTY AF!!!");
+        } else {alert("THIS SHIT EMPTY AF!!!");
              newItem.value = '';
         }
     }
@@ -39,30 +40,10 @@ import {computed, ref} from 'vue';
                 </button>
             </div>
         </div>
-        <h1>All items</h1>
-        <ul>
-            <li v-for="item in items" :key="item.id">
-                {{ item.text }}
-                <input @click="" type="checkbox" v-model="item.isDone">
-            </li>   
-        </ul>
 
-         <h1>Done items</h1>
-        <ul>
-            <li v-for="item in doneItems" :key="item.id">
-                {{ item.text }}
-                <input @click="" type="checkbox" v-model="item.isDone">
-            </li>   
-        </ul>
-
-        <h1>ToDo items</h1>
-        <ul>
-            <li v-for="item in ToDoItems" :key="item.id">
-                {{ item.text }}
-                <input @click="" type="checkbox" v-model="item.isDone">
-            </li>   
-        </ul>
-        
+        <ItemList :items="items" title="All items"></ItemList>
+        <ItemList :items="doneItems" title="Done Items"></ItemList>
+        <ItemList :items="ToDoItems" title="ToDo Items"></ItemList>
     </div>
     
 
